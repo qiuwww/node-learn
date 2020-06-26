@@ -1,0 +1,28 @@
+{
+  "name": "gushiwen-spider",
+  "version": "1.0.0",
+  "description": "解析古诗文网站的页面，保存一些资源到数据库中，方便使用",
+  "keywords": [
+    "spider",
+    "cheerio",
+    "gushiwen"
+  ],
+  "author": "邱伟伟 <weiweiqiu@91jkys.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/gushiwen-spider.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3"
+  }
+}
