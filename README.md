@@ -2,7 +2,7 @@
 title: node-learn
 ---
 
-## node-react
+## blog-node
 
 node 学习笔记，保存的资料，理论的一些东西，**温故而知新**。
 
