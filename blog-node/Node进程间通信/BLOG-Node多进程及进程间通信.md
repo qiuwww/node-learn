@@ -75,7 +75,7 @@ child_process.fork() 方法是 child_process.spawn() 的一个特例，专门用
 
 ### 通信方式
 
-1. 1.通过 stdin/stdout 传递 json，最直接的通信方式，拿到子进程的 handle 后，可以访问其 stdio 流，然后约定一种 message 格式开始愉快地通信；
+1. 通过 stdin/stdout 传递 json，最直接的通信方式，拿到子进程的 handle 后，可以访问其 stdio 流，然后约定一种 message 格式开始愉快地通信；
 2. 原生 IPC 方式，如 spawn()及 fork()的例子，进程之间可以借助内置的 IPC 机制通信；
 3. 通过网络 Sockets，**借助网络完成进程通信**,不仅能跨进程还能跨机器，node-ipc 就采用这种方案；
 

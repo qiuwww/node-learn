@@ -91,37 +91,37 @@ node 可以**多线程执行异步事件**，相对于浏览器，只会有 setT
 
 ### 测试 node 执行
 
-先执行 nextTick，再执行微任务。
+先执行 process.nextTick，再执行微任务 then。
 
 ```js
 Promise.resolve().then(() => {
-  console.log('resolve1');
+  console.log("resolve1");
 });
 
 process.nextTick(function () {
-  console.log('tick1');
+  console.log("tick1");
   process.nextTick(function () {
-    console.log('tick2');
+    console.log("tick2");
   });
   process.nextTick(function () {
-    console.log('tick3');
+    console.log("tick3");
   });
 });
 
 Promise.resolve().then(() => {
-  console.log('resolve2');
+  console.log("resolve2");
 });
 
 process.nextTick(function () {
-  console.log('tick4');
+  console.log("tick4");
 });
 
 Promise.resolve().then(() => {
-  console.log('resolve3');
+  console.log("resolve3");
 });
 
 process.nextTick(function () {
-  console.log('tick5');
+  console.log("tick5");
 });
 
 // tick1
@@ -135,6 +135,13 @@ process.nextTick(function () {
 // resolve2
 // resolve3
 ```
+
+#### process.nextTick 永远大于 promise.then
+
+原因其实很简单。。。在 Node 中，\_tickCallback 在每一次执行完 TaskQueue 中的一个任务后被调用，而这个\_tickCallback 中实质上干了两件事：
+
+1. nextTickQueue 中所有任务执行掉(长度最大 1e4，Node 版本 v6.9.1)
+2. 第一步执行完后执行\_runMicrotasks 函数，执行 microtask 中的部分(promise.then 注册的回调)
 
 ## 参考文章
 

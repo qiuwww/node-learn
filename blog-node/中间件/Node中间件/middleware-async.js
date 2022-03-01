@@ -1,27 +1,27 @@
 // 同步任务
 const middleware1 = (req, res, next) => {
-  console.log('middleware1 start');
+  console.log("middleware1 start");
   next();
   // 这里会在middleware2 end前就结束了
   // 也就是middleware2只嵌套了其后的任务
-  console.log('middleware1 end');
+  console.log("middleware1 end");
 };
 
 // 异步任务
 const middleware2 = (req, res, next) => {
-  console.log('middleware2 start');
+  console.log("middleware2 start");
   new Promise((resolve) => {
     setTimeout(() => resolve(), 2000);
   }).then(() => {
     next();
-    console.log('middleware2 end');
+    console.log("middleware2 end");
   });
 };
 
 const middleware3 = (req, res, next) => {
-  console.log('middleware3 start');
+  console.log("middleware3 start");
   next();
-  console.log('middleware3 end');
+  console.log("middleware3 end");
 };
 
 // 中间件数组，解析的时候，收集中间件的执行
